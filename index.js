@@ -1,4 +1,4 @@
-// Реальная база данных автомобилей
+
 const carDatabase = [
   {
     "number": "С 455 ЕЕ ",
@@ -170,28 +170,28 @@ const carDatabase = [
   }
 ];
 
-// DOM элементы
+
 const carNumberInput = document.getElementById('carNumberInput');
 const searchButton = document.getElementById('searchButton');
 const resultContainer = document.getElementById('resultContainer');
 const resultInfo = document.getElementById('resultInfo');
 const errorElement = document.getElementById('error');
 
-// Функция нормализации номера (удаляет пробелы и приводит к верхнему регистру)
+
 function normalizeNumber(number) {
     return number.replace(/\s+/g, '').toUpperCase();
 }
 
-// Функция извлечения только цифр из номера
+
 function extractDigits(number) {
     return number.replace(/\D/g, '');
 }
 
-// Функция поиска автомобиля
+
 function searchCar() {
     const inputNumber = carNumberInput.value.trim();
     
-    // Валидация ввода
+   
     if (!inputNumber) {
         showError('Пожалуйста, введите номер автомобиля');
         hideResult();
@@ -201,14 +201,13 @@ function searchCar() {
     const normalizedInput = normalizeNumber(inputNumber);
     const digitsInput = extractDigits(inputNumber);
     
-    // Поиск в базе данных
-    // Сначала ищем по полному совпадению (нормализованному)
+  
     let car = carDatabase.find(car => {
         const normalizedCarNumber = normalizeNumber(car.number);
         return normalizedCarNumber === normalizedInput;
     });
     
-    // Если не нашли, ищем по цифрам
+    
     if (!car && digitsInput) {
         car = carDatabase.find(car => {
             const carDigits = extractDigits(car.number);
@@ -225,12 +224,12 @@ function searchCar() {
     }
 }
 
-// Показать результат
+
 function showResult(car) {
-    // Форматируем имя (если 0, то показываем "Не указано")
+    
     const name = car.name === 0 ? '<span class="missing">Не указано</span>' : car.name;
     
-    // Форматируем телефон (если пустой, то показываем "Не указан")
+    
     const phone = car.phone ? car.phone : '<span class="missing">Не указан</span>';
     
     resultInfo.innerHTML = `
@@ -242,7 +241,7 @@ function showResult(car) {
     resultContainer.classList.add('show');
 }
 
-// Показать сообщение "не найдено"
+
 function showNoResult() {
     resultInfo.innerHTML = `
         <div class="no-result">
@@ -254,23 +253,23 @@ function showNoResult() {
     resultContainer.classList.add('show');
 }
 
-// Скрыть результат
+
 function hideResult() {
     resultContainer.classList.remove('show');
 }
 
-// Показать ошибку
+
 function showError(message) {
     errorElement.textContent = message;
     errorElement.style.display = 'block';
 }
 
-// Скрыть ошибку
+
 function hideError() {
     errorElement.style.display = 'none';
 }
 
-// Обработчики событий
+
 searchButton.addEventListener('click', searchCar);
 
 carNumberInput.addEventListener('keypress', (e) => {
@@ -279,13 +278,14 @@ carNumberInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Очистка ошибки при изменении ввода
+
 carNumberInput.addEventListener('input', () => {
     hideError();
     hideResult();
 });
 
-// Автофокус на поле ввода при загрузке страницы
+
 window.addEventListener('load', () => {
     carNumberInput.focus();
+
 });
