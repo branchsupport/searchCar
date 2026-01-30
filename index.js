@@ -247,7 +247,7 @@ function showNoResult() {
         <div class="no-result">
             <p>❌ Автомобиль с таким номером не найден</p>
             <p style="margin-top: 10px; font-size: 14px;">Попробуйте проверить правильность ввода</p>
-            <p style="font-size: 14px;">Примеры: С455ЕЕ64, 455, 486, 071</p>
+            <p style="font-size: 14px;">Возможно автомобиля нет в базе</p>
         </div>
     `;
     resultContainer.classList.add('show');
@@ -289,3 +289,4 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
