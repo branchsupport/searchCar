@@ -176,7 +176,29 @@ const searchButton = document.getElementById('searchButton');
 const resultContainer = document.getElementById('resultContainer');
 const resultInfo = document.getElementById('resultInfo');
 const errorElement = document.getElementById('error');
-
+//anmate
+const h1 = document.querySelector('h1');
+    const text = h1.textContent;
+    h1.textContent = '';
+    
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.textContent = '|';
+    cursor.style.animation = 'blink 1s infinite';
+    cursor.style.marginLeft = '5px';
+    h1.appendChild(cursor);
+    
+    const typingEffect = setInterval(() => {
+      if (i < text.length) {
+        h1.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+        i++;
+      } else {
+        clearInterval(typingEffect);
+        // Замедляем мигание курсора после завершения
+        cursor.style.animation = 'blink 1.5s infinite';
+      }
+    }, 80);
+//q
 
 function normalizeNumber(number) {
     return number.replace(/\s+/g, '').toUpperCase();
@@ -289,4 +311,5 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
