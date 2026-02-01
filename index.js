@@ -13,6 +13,12 @@ const carDatabase = [
     "phone": ""
   },
   {
+    "number": "Н 122 ВС ",
+    "name": 0,
+    "apartment": 35,
+    "phone": "89878343544"
+  },
+  {
     "number": "Р 361 ЕЕ",
     "name": 0,
     "apartment": 41,
@@ -311,5 +317,6 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
 
