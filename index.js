@@ -325,13 +325,14 @@ function showResult(car) {
         
         
         phoneLink = firstPhone.replace(/\D/g, '');
-     
-        if (!phoneLink.startsWith('7')) {
-            phoneLink = '7' + phoneLink;
-        }
-        if (!phoneLink.startsWith('7') && !phoneLink.startsWith('8')) {
-            phoneLink = '7' + phoneLink;
-        }
+
+if (phoneLink.startsWith('8')) {
+    phoneLink = '7' + phoneLink.substring(1);
+}
+
+else if (phoneLink.length === 10) {
+    phoneLink = '7' + phoneLink;
+}
     }
     
     let phoneHtml = '';
@@ -406,6 +407,7 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
 
 
