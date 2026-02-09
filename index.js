@@ -254,7 +254,7 @@ const h1 = document.querySelector('h1');
         i++;
       } else {
         clearInterval(typingEffect);
-        // Замедляем мигание курсора после завершения
+        
         cursor.style.animation = 'blink 1.5s infinite';
       }
     }, 80);
@@ -307,26 +307,25 @@ function searchCar() {
 }
 
 
-// Показать результат
+
 function showResult(car) {
-    // Форматируем имя (если 0, то показываем "Не указано")
+    
     const name = car.name === 0 ? '<span class="missing">Не указано</span>' : car.name;
     
-    // Форматируем телефон для звонка (убираем дефисы и пробелы, добавляем +7)
+ 
     let phoneLink = '';
     let phoneDisplay = '';
     
     if (car.phone) {
-        // Берём первый номер, если их несколько (через точку с запятой)
+       
         const phones = car.phone.split(';');
         const firstPhone = phones[0].trim();
-        
-        // Форматируем для отображения
+      
         phoneDisplay = car.phone.replace(/;/g, '<br>');
         
-        // Форматируем для ссылки tel: (только цифры)
+        
         phoneLink = firstPhone.replace(/\D/g, '');
-        // Добавляем 7 в начало, если её нет
+     
         if (!phoneLink.startsWith('7')) {
             phoneLink = '7' + phoneLink;
         }
@@ -363,7 +362,7 @@ function showResult(car) {
 function showNoResult() {
     resultInfo.innerHTML = `
         <div class="no-result">
-            <p>❌ Автомобиль с таким номером не найден</p>
+            <p> Автомобиль с таким номером не найден</p>
             <p style="margin-top: 10px; font-size: 14px;">Попробуйте проверить правильность ввода</p>
             <p style="font-size: 14px;">Возможно автомобиля нет в базе</p>
         </div>
@@ -407,6 +406,7 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
 
 
