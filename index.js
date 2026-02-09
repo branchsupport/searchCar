@@ -307,18 +307,54 @@ function searchCar() {
 }
 
 
+// Показать результат
 function showResult(car) {
-    
+    // Форматируем имя (если 0, то показываем "Не указано")
     const name = car.name === 0 ? '<span class="missing">Не указано</span>' : car.name;
     
+    // Форматируем телефон для звонка (убираем дефисы и пробелы, добавляем +7)
+    let phoneLink = '';
+    let phoneDisplay = '';
     
-    const phone = car.phone ? car.phone : '<span class="missing">Не указан</span>';
+    if (car.phone) {
+        // Берём первый номер, если их несколько (через точку с запятой)
+        const phones = car.phone.split(';');
+        const firstPhone = phones[0].trim();
+        
+        // Форматируем для отображения
+        phoneDisplay = car.phone.replace(/;/g, '<br>');
+        
+        // Форматируем для ссылки tel: (только цифры)
+        phoneLink = firstPhone.replace(/\D/g, '');
+        // Добавляем 7 в начало, если её нет
+        if (!phoneLink.startsWith('7')) {
+            phoneLink = '7' + phoneLink;
+        }
+        if (!phoneLink.startsWith('7') && !phoneLink.startsWith('8')) {
+            phoneLink = '7' + phoneLink;
+        }
+    }
+    
+    let phoneHtml = '';
+    if (car.phone) {
+        phoneHtml = `
+            <p><strong>Телефон:</strong></p>
+            <p>${phoneDisplay}</p>
+            <div class="phone-container">
+                <a href="tel:+${phoneLink}" class="call-button">
+                     Позвонить
+                </a>
+            </div>
+        `;
+    } else {
+        phoneHtml = '<p><strong>Телефон:</strong> <span class="missing">Не указан</span></p>';
+    }
     
     resultInfo.innerHTML = `
         <p><strong>Номер авто:</strong> ${car.number}</p>
         <p><strong>Квартира:</strong> № ${car.apartment}</p>
         <p><strong>Имя:</strong> ${name}</p>
-        <p><strong>Телефон:</strong> ${phone}</p>
+        ${phoneHtml}
     `;
     resultContainer.classList.add('show');
 }
@@ -371,6 +407,7 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
 
 
