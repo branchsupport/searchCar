@@ -1,13 +1,13 @@
 
 const carDatabase = [
   {
-    "number": "С 455 ЕЕ 64",
+    "number": "С 455 ЕЕ",
     "name": 0,
     "apartment": 37,
     "phone": "8-927-148-88-64; 8-937-221-89-01"
   },
   {
-    "number": "Т 071 МТ 67",
+    "number": "Т 071 МТ",
     "name": 0,
     "apartment": 33,
     "phone": ""
@@ -187,13 +187,19 @@ const carDatabase = [
     "phone": "8-902-048-99-40"
   },
   {
-    "number": "У 026 МО",
+    "number": "Е 026 МО",
     "name": 0,
     "apartment": 42,
     "phone": "8-996-128-98-58"
   },
+   {
+    "number": "Е 335 АУ",
+    "name": 0,
+    "apartment": 42,
+    "phone": "8-917-326-38-16"
+  },
   {
-    "number": "М 463 ХТ 164",
+    "number": "М 463 ХТ",
     "name": 0,
     "apartment": 73,
     "phone": "8-937-266-27-27"
@@ -407,6 +413,7 @@ window.addEventListener('load', () => {
     carNumberInput.focus();
 
 });
+
 
 
 
